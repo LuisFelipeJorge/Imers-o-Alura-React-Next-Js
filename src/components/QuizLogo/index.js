@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import styled from 'styled-components';
 
 import React from 'react';
@@ -41,4 +42,4 @@ const QuizLogo = styled(Logo)`
   }
 `;
 
-export default QuizLogo; 
+export default QuizLogo;
