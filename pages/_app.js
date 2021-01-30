@@ -1,9 +1,6 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-// eslint-disable-next-line import/no-unresolved
 import Head from 'next/head';
-
 import db from '../db.json';
 
 const GlobalStyle = createGlobalStyle`

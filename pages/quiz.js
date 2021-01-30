@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-
 import db from '../db.json';
 import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
-import QuizContainer from '../src/components/QuizContainer';
 import QuizBackground from '../src/components/QuizBackground';
+import QuizContainer from '../src/components/QuizContainer';
 import Button from '../src/components/Button';
 
 function LoadingWidget() {
@@ -14,6 +13,7 @@ function LoadingWidget() {
       <Widget.Header>
         Carregando...
       </Widget.Header>
+
       <Widget.Content>
         [Desafio do Loading]
       </Widget.Content>
@@ -31,6 +31,7 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
+        {/* <BackLinkArrow href="/" /> */}
         <h3>
           {`Pergunta ${questionIndex + 1} de ${totalQuestions}`}
         </h3>
@@ -47,15 +48,15 @@ function QuestionWidget({
       />
       <Widget.Content>
         <h2>
-          {question.tile}
+          {question.title}
         </h2>
         <p>
           {question.description}
         </p>
 
         <form
-          onSubmit={(eventInfo) => {
-            eventInfo.preventDefault();
+          onSubmit={(infosDoEvento) => {
+            infosDoEvento.preventDefault();
             onSubmit();
           }}
         >
@@ -94,7 +95,7 @@ const screenStates = {
   LOADING: 'LOADING',
   RESULT: 'RESULT',
 };
-export default function QuizPAge() {
+export default function QuizPage() {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
