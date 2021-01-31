@@ -1,28 +1,64 @@
 {
   "bg": "https://image.winudf.com/v2/image/Y29tLkVtcGlyZVdhbGxwYXBlcnMuR3ltNjJfc2NyZWVuc2hvdHNfM184ZTgzZTBkZg/screen-3.jpg?fakeurl=1&type=.jpg",
-  "title": "Quiz CSS da Alura",
-  "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
+  "title": "Quiz fitness do Jorge",
+  "description": "Teste os seus conhecimentos sobre treinamento e condicionamento físico",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
+      "image": "https://media1.tenor.com/images/8d47ab78bfc232d646df316cf344fb61/tenor.gif?itemid=14033198",
+      "title": "Qual o papel dos macro-nutrientes carboidratos, gorduras e proteínas, respectivamente?",
       "description": "Essa é pra aquecer",
-      "answer": 2,
+      "answer": 0,
       "alternatives": [
-        ".elemento",
-        "*elemento",
-        "#elemento",
-        "%elemento"
+        "Fonte de energia primária; Síntese de Tecido Muscular; Síntese de Hormônios",
+        "Estrutural, Fonte de Energia, Reposição de Sais-Minerais",
+        "Hidratação , Fonte de Energia, Controle de Temperatura",
+        "Nenhuma das alternativas anteriores"
       ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "image": "https://media.tenor.com/images/0c9e10f9c9a80515b78023e5719415a5/tenor.gif",
+      "title": "Quais macrobutrientes são obtidos em maior abundância em dietas baseadas em vegetais e em produtos de origem animal, respectivamente?",
+      "description": "Conhece os alimentos do seu prato??",
+      "answer": 2,
+      "alternatives": [
+         "Proteínas e Lípidios",
+         "Carboidratos para ambas as dietas",
+         "Carboidratos e Proteínas",
+         "Proteínas e Carboidratos"
+      ]
+    },
+    {
+      "image": "https://media1.tenor.com/images/db3c9623a0fe7a4c7715c71c9c61fcc5/tenor.gif?itemid=10681166",
+      "title": "Treinos direcionados para ganho de FORÇA são caracterizados por:",
+      "description": "BIRLL!!!",
       "answer": 0,
       "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
+         "Alta intensidade e volume baixo",
+         "Baixa intensidade e volume alto"
+      ]
+    },
+    {
+      "image": "https://media.tenor.com/images/5df6b88e544cdc76f4e0cd52ef6b697e/tenor.gif",
+      "title": "Qual o hormônio responsável pelo aumento de massa muscular?",
+      "description": "Arnold is numero uno",
+      "answer": 1,
+      "alternatives": [
+         "Progesterona",
+         "Testosterona",
+         "Estrogênio",
+         "Insulina"
+      ]
+    },
+    {
+      "image": "https://media.tenor.com/images/1617a45d3a08f0808225c6de010cc1c2/tenor.gif",
+      "title": "Quais os efeitos positivos do uso do suplemento Creatina?",
+      "description": "No pain No gain!!",
+      "answer": 2,
+      "alternatives": [
+         "Prudução Hormonal",
+         "Melhora do Sistema Imunológico",
+         "Aumento da Resistencia à fadiga",
+         "Hidratação"
       ]
     }
   ],
