@@ -7,6 +7,7 @@ import QuizBackground from '../src/components/QuizBackground';
 import QuizContainer from '../src/components/QuizContainer';
 import AlternativesForm from '../src/components/AlternativesForm';
 import Button from '../src/components/Button';
+import GitHubCorner from '../src/components/GitHubCorner';
 
 function ResultWidget({ results }) {
   return (
@@ -212,6 +213,7 @@ export default function QuizPage() {
 
         {screenState === screenStates.RESULT && <ResultWidget results={results} />}
       </QuizContainer>
+      <GitHubCorner projectUrl="https://github.com/LuisFelipeJorge/Imers-o-Alura-React-Next-Js" />
     </QuizBackground>
   );
 }
