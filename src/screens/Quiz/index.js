@@ -1,34 +1,36 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import db from '../db.json';
-import Widget from '../src/components/Widget';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import AlternativesForm from '../src/components/AlternativesForm';
-import Button from '../src/components/Button';
-import GitHubCorner from '../src/components/GitHubCorner';
+import React from 'react';
+import { Lottie } from '@crello/react-lottie';
+import Widget from '../../components/Widget';
+import QuizLogo from '../../components/QuizLogo';
+import QuizBackground from '../../components/QuizBackground';
+import QuizContainer from '../../components/QuizContainer';
+import AlternativesForm from '../../components/AlternativesForm';
+import Button from '../../components/Button';
+import BackLinkArrow from '../../components/BackLinkArrow';
+
+import loadingAnimation from './animations/loading.json';
 
 function ResultWidget({ results }) {
   return (
     <Widget>
       <Widget.Header>
-        Tela de Resultado
+        <BackLinkArrow href="/" />
+        Voltar ao início
       </Widget.Header>
 
       <Widget.Content>
         <p>
           Você acertou
           {' '}
-          {/* Couting the number of hits  */}
+          {/* {results.reduce((currentSum, currentResult) => {
+            const isHit = currentResult === true;
+            if (isHit) {
+              return currentSum + 1;
+            }
+            return currentSum;
+          }, 0)} */}
           {results.filter((x) => x).length}
-
-          {/* The filter() method creates an array filled with all array elements that pass a test
-          (provided as a function).
-            Note: filter() does not execute the function for array elements without values.
-            Note: filter() does not change the original array.
-            Reference: https://www.w3schools.com/jsref/jsref_filter.asp
-          */}
           {' '}
           perguntas
         </p>
@@ -57,8 +59,13 @@ function LoadingWidget() {
         Carregando...
       </Widget.Header>
 
-      <Widget.Content>
-        [Desafio do Loading]
+      <Widget.Content style={{ display: 'flex', justifyContent: 'center' }}>
+        <Lottie
+          width="200px"
+          height="200px"
+          className="lottie-container basic"
+          config={{ animationData: loadingAnimation, loop: true, autoplay: true }}
+        />
       </Widget.Content>
     </Widget>
   );
@@ -71,15 +78,16 @@ function QuestionWidget({
   onSubmit,
   addResult,
 }) {
-  const [selectedAlternative, setSelectedAlternative] = useState(undefined);
-  const [isQuestionSubmited, setIsQuestionSubmited] = useState(false);
+  const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
+  const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
   const questionId = `question__${questionIndex}`;
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+
   return (
     <Widget>
       <Widget.Header>
-        {/* <BackLinkArrow href="/" /> */}
+        <BackLinkArrow href="/" />
         <h3>
           {`Pergunta ${questionIndex + 1} de ${totalQuestions}`}
         </h3>
@@ -103,8 +111,8 @@ function QuestionWidget({
         </p>
 
         <AlternativesForm
-          onSubmit={(eventInfo) => {
-            eventInfo.preventDefault();
+          onSubmit={(infosDoEvento) => {
+            infosDoEvento.preventDefault();
             setIsQuestionSubmited(true);
             setTimeout(() => {
               addResult(isCorrect);
@@ -129,8 +137,8 @@ function QuestionWidget({
                 <input
                   style={{ display: 'none' }}
                   id={alternativeId}
-                  onChange={() => setSelectedAlternative(alternativeIndex)}
                   name={questionId}
+                  onChange={() => setSelectedAlternative(alternativeIndex)}
                   type="radio"
                 />
                 {alternative}
@@ -138,15 +146,11 @@ function QuestionWidget({
             );
           })}
 
-          {/* <pre>
-            {JSON.stringify(question, null, 4)}
-          </pre> */}
           <Button type="submit" disabled={!hasAlternativeSelected}>
             Confirmar
           </Button>
-          {isQuestionSubmited && isCorrect && <p>Você acertou</p>}
-          {isQuestionSubmited && !isCorrect && <p>Você errou</p>}
-
+          {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
+          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
@@ -158,16 +162,17 @@ const screenStates = {
   LOADING: 'LOADING',
   RESULT: 'RESULT',
 };
-export default function QuizPage() {
-  const [screenState, setScreenState] = useState(screenStates.LOADING);
-  const [results, setResults] = useState([]);
-  const totalQuestions = db.questions.length;
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+export default function QuizPage({ externalQuestions, externalBg }) {
+  const [screenState, setScreenState] = React.useState(screenStates.LOADING);
+  const [results, setResults] = React.useState([]);
+  const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
-  const question = db.questions[questionIndex];
+  const question = externalQuestions[questionIndex];
+  const totalQuestions = externalQuestions.length;
+  const bg = externalBg;
 
   function addResult(result) {
-    // push new result
+    // results.push(result);
     setResults([
       ...results,
       result,
@@ -182,7 +187,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 1 * 2000);
   // nasce === didMount
   }, []);
 
@@ -196,7 +201,7 @@ export default function QuizPage() {
   }
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={bg}>
       <QuizContainer>
         <QuizLogo />
         {screenState === screenStates.QUIZ && (
@@ -213,7 +218,6 @@ export default function QuizPage() {
 
         {screenState === screenStates.RESULT && <ResultWidget results={results} />}
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/LuisFelipeJorge/Imers-o-Alura-React-Next-Js" />
     </QuizBackground>
   );
 }
